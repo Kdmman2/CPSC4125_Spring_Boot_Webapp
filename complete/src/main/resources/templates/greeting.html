@@ -41,6 +41,8 @@
   <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
   <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
 </div>
+<div  id="nasa">
+</div>
 <div  id="nasaAPOD" class="content">
 </div>
 
@@ -59,6 +61,9 @@
                 url: 'https://api.nasa.gov/planetary/apod?api_key=UjqfpjGM0gkeETaJxzRIwDx86OdK9WS6VbrsqI7j',
                 dataType: 'json',
                 success: function(data){
+                    $('#nasa').html('<h2>'+data.title+'</h2><br>');
+                    $('#nasa').append(data.explanation+'<br>');
+                    $('#nasa').append("Date: " +data.date);
                     $('#nasaAPOD').css('background',"url('" + data.url + "')");
                 },
                 error: function(e){

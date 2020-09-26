@@ -28,9 +28,21 @@ public class HelloController {
     @PostMapping("/contact")
     public String postContact(Model model, @RequestBody Contact contact){
         //Contact create object
-        System.out.println(contact.getEmail());
-        System.out.println(contact.getMessage());
-        return "contact";
+         model.addAttribute("email",contact.getEmail());
+         model.addAttribute("message",contact.getMessage());
+        return "Fragments/contactResponse :: #contactSuccess";
+    }
+    @GetMapping("/blog")
+	public String blog(Model model){
+        return "blog";
+    }
+    @PostMapping("/blog")
+    public String postBlog(Model model, @RequestBody Blog blog){
+        //Contact create object
+        System.out.println(blog.getBlog());
+        model.addAttribute("input",blog.getBlog());
+
+        return "Fragments/blogPost :: #blogPosts";
     }
     @GetMapping("/about")
 	public String about(Model model){

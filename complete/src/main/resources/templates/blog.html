@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"  />
 
     <title>Hello, world!</title>
@@ -35,23 +35,20 @@
   </div>
 </nav>
 <div class="jumbotron">
-  <h1 class="display-4">Contact me!</h1>
-  <p class="lead">Fill out the form below to contact me.</p>
+  <h1 class="display-4">Blog</h1>
+  <p class="lead">Add to the blog down below</p>
   <hr class="my-4">
-  <form id="contact-form">
+  <form id="blog-form">
   <div class="form-group">
-    <label for="exampleFormControlInput1">Email address</label>
-    <input name="email" type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+    <label for="exampleFormControlTextarea2">Blog text area:</label>
+    <textarea name="input" class="form-control" id="exampleFormControlTextarea2" rows="3"></textarea>
   </div>
-  <div class="form-group">
-    <label for="exampleFormControlTextarea1">Example textarea</label>
-    <textarea name="message" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-  </div>
-  <button type="submit" class="contact-me-submit">Submit</button>
+  <button type="submit" class="blog-submit">Submit</button>
 </form>
-<div id="ajaxResponse">
 </div>
-</div>
+    <div id="Posts">
+        <p>Featured blogs:</p>
+    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -63,19 +60,20 @@
     <!-- Javascript for submission of the form using Jquery and Ajax -->
     <script>
         //form handler
-         $("#contact-form").submit(function(event){
+         $("#blog-form").submit(function(event){
             //stop form from submitting as it normally would
             event.preventDefault();
             //default way to send data is as a JSON {"var":"value","var":"value"....}
             //get Values from the form above and assign to variable names
-            var formData = {"email": exampleFormControlInput1.value, "message": exampleFormControlTextarea1.value};
+            var formData = {"input": exampleFormControlTextarea2.value};
             $.ajax({
                 type: 'POST',
-                url: '/contact',
+                url: '/blog',
                 data: JSON.stringify(formData),
                 contentType: "application/json; charset=utf-8",
                 success: function(data){
-                    $('#ajaxResponse').html(data + '<br>');
+                    console.log(data);
+                    $('#Posts').append(data + '<br>');
                 },
                 error: function(e){
                     console.log(e);

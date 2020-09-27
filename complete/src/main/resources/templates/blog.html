@@ -41,7 +41,7 @@
   <form id="blog-form">
   <div class="form-group">
     <label for="exampleFormControlTextarea2">Blog text area:</label>
-    <textarea name="input" class="form-control" id="exampleFormControlTextarea2" rows="3"></textarea>
+    <textarea name="blog" class="form-control" id="exampleFormControlTextarea2" rows="3"></textarea>
   </div>
   <button type="submit" class="blog-submit">Submit</button>
 </form>
@@ -65,7 +65,7 @@
             event.preventDefault();
             //default way to send data is as a JSON {"var":"value","var":"value"....}
             //get Values from the form above and assign to variable names
-            var formData = {"input": exampleFormControlTextarea2.value};
+            var formData = {"blog": exampleFormControlTextarea2.value};
             $.ajax({
                 type: 'POST',
                 url: '/blog',
